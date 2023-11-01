@@ -1,0 +1,24 @@
+---
+
+galaxy_info:
+  author: Florian Furlanetto
+  description: This role install K8S on target system
+  company: ADNEOM
+
+  license: See license.md
+
+  min_ansible_version: 2.x
+
+  platforms:
+  - name: CentOS / RHEL
+    versions:
+    - 7
+    - 8
+
+  galaxy_tags:
+    - adneom
+    - ffurlanetto
+    - kubernetes
+    - container
+
+dependencies: []

@@ -1,0 +1,63 @@
+---
+## Default Role config
+container_runtime: containerd                            # docker, cri-o, containerd 
+configure_firewalld: true                            # true / false
+
+# Docker proxy support
+setup_proxy: false                                   # Set to true to configure proxy
+proxy_server: "proxy.example.com:8080"               # Proxy server address and port
+docker_proxy_exclude: "localhost,127.0.0.1"          # Adresses to exclude from proxy
+
+# CRI-O
+crio_repo_version: paas7-crio-115-release
+
+# Master nodes firewall ports
+k8s_master_ports:
+    - 6443
+    - 2379-2380
+    - 10250
+    - 10251
+    - 10252
+
+# Worker nodes firewall ports
+k8s_worker_ports:
+    - 10250
+    - 30000-32767
+
+# Calico CNI firewall ports
+calico_udp_ports:
+  - 4789
+calico_tcp_ports:
+  - 5473
+  - 179
+  - 5473
+
+# Flannel CNI firewall ports
+flannel_udp_ports:
+  - 8285
+  - 8472
+
+kubernetes_kubelet_extra_args: ""
+kubernetes_kubeadm_init_extra_opts: ""
+kubernetes_join_command_extra_opts: ""
+
+kubernetes_allow_pods_on_master: true
+kubernetes_enable_web_ui: true
+kubernetes_enable_helm: true
+kubernetes_enable_ingress: true
+
+kubernetes_web_ui_manifest_file: https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+
+kubernetes_pod_network:
+  cni: 'calico'
+  cidr: '10.244.0.0/16'
+
+kubernetes_apiserver_advertise_address: ''
+kubernetes_ignore_preflight_errors: 'all'
+
+# Flannel config files.
+kubernetes_flannel_manifest_file_rbac: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-rbac.yml
+kubernetes_flannel_manifest_file: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+# Calico config files
+kubernetes_calico_manifest_file: https://docs.projectcalico.org/v3.10/manifests/calico.yaml
